@@ -1,0 +1,28 @@
+{
+  "collectionName": "blog_posts",
+  "info": {
+    "name": "Blog Post",
+    "singularName": "blog-post",
+    "pluralName": "blog-posts",
+    "displayName": "Blog Post",
+    "description": "A collection of blog posts"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publishedAt": {
+      "type": "datetime"
+    }
+  }
+} 

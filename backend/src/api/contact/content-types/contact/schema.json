@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Manage the contact page content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "workingHours": {
+      "type": "text",
+      "required": true
+    },
+    "mapEmbedCode": {
+      "type": "text"
+    },
+    "socialMedia": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.social-link"
+    }
+  }
+} 
