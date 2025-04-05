@@ -16,8 +16,8 @@ const team = [
     description: 'Expert en négociation et développement commercial',
   },
   {
-    name: 'Sophie Laurent',
-    role: 'Responsable Marketing',
+    name: 'Xavier Donald',
+    role: 'Responsable Communication',
     image: '/images/profil.jpg',
     description: 'Spécialiste en communication immobilière',
   },
