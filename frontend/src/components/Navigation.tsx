@@ -35,7 +35,7 @@ export default function Navigation() {
     },
     { 
       href: '/portfolio', 
-      label: 'Portfolio', 
+      label: 'Réalisations', 
       icon: <BsPersonLinesFill size={20} className="mr-1 text-red-500" /> 
     },
     { 

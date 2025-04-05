@@ -147,17 +147,17 @@ const TRANSACTION_TYPES = ["Vente", "Location"];
 const LOCATIONS = ["Tous", "Brazzaville - Centre-ville", "Brazzaville - Bacongo", "Brazzaville - Poto-Poto", "Brazzaville - Moungali", "Brazzaville - Ouenzé", "Brazzaville - Talangaï", "Brazzaville - Madibou"];
 const PROPERTY_TYPES = ["Tous", "Maison", "Appartement", "Villa", "Terrain", "Local commercial", "Bureau"];
 const FEATURES = [
+  "Bâche à eau",
+  "Suppresseur",
+  "Chauffe-eau",
+  "Guerite",
   "Piscine", 
   "Jardin", 
   "Garage", 
   "Climatisation", 
   "Sécurité 24/7", 
   "Meublé", 
-  "Internet",
-  "Bâche à eau",
-  "Suppresseur",
-  "Chauffe-eau",
-  "Guerite"
+  "Internet"
 ];
 const STATUS_OPTIONS = ["Tous", "Disponible", "En cours de transaction", "Vendu/Loué", "Bientôt disponible", "Réservé"];
 
@@ -204,6 +204,7 @@ const OffersPage = () => {
   const [locations, setLocations] = useState<string[]>(LOCATIONS);
   const [loading, setLoading] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState('Prix décroissant');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -282,16 +283,30 @@ const OffersPage = () => {
 
     // Prix
     const matchesPriceRange = priceRange === 'Tous' || (() => {
-      const price = parseInt(property.attributes.price.replace(/[^\d]/g, ''));
+      // Extraire le prix numérique en supprimant "FCFA", "/mois" et les points
+      const priceString = property.attributes.price
+        .replace(/FCFA.*$/, '')
+        .replace(/\./g, '')
+        .trim();
+      const price = parseInt(priceString, 10);
+
+      // Convertir les seuils en nombres
+      const thresholds = {
+        '0-500k': 500000,
+        '500k-1M': 1000000,
+        '1M-5M': 5000000,
+        '5M+': 5000000
+      };
+
       switch (priceRange) {
         case '0-500k':
-          return price <= 500000;
+          return price <= thresholds['0-500k'];
         case '500k-1M':
-          return price > 500000 && price <= 1000000;
+          return price > thresholds['0-500k'] && price <= thresholds['500k-1M'];
         case '1M-5M':
-          return price > 1000000 && price <= 5000000;
+          return price > thresholds['500k-1M'] && price <= thresholds['1M-5M'];
         case '5M+':
-          return price > 5000000;
+          return price > thresholds['5M+'];
         default:
           return true;
       }
@@ -307,6 +322,30 @@ const OffersPage = () => {
            matchesPriceRange;
   });
 
+  // Fonction pour extraire le prix numérique
+  const extractPrice = (priceString: string) => {
+    return parseInt(priceString.replace(/FCFA.*$/, '').replace(/\./g, '').trim(), 10);
+  };
+
+  // Trier les propriétés
+  const sortedProperties = [...filteredProperties].sort((a, b) => {
+    const priceA = extractPrice(a.attributes.price);
+    const priceB = extractPrice(b.attributes.price);
+    
+    switch (sortOrder) {
+      case 'Prix croissant':
+        return priceA - priceB;
+      case 'Prix décroissant':
+        return priceB - priceA;
+      case 'Plus récent':
+        return b.id - a.id;
+      case 'Plus ancien':
+        return a.id - b.id;
+      default:
+        return 0;
+    }
+  });
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -318,7 +357,7 @@ const OffersPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section avec Search Bar */}
-      <section className="relative h-[60vh] overflow-hidden">
+      <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/hero-offres.jpg"
@@ -330,7 +369,7 @@ const OffersPage = () => {
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4">
+        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 pt-20">
           <div className="max-w-4xl mb-8">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
               Trouvez Votre Bien Idéal
@@ -513,13 +552,13 @@ const OffersPage = () => {
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                           {[
-                            { icon: <MdPool className="text-lg" />, label: "Piscine" },
-                            { icon: <BsHouseDoor className="text-lg" />, label: "Jardin" },
+                            // { icon: <MdPool className="text-lg" />, label: "Piscine" },
+                            // { icon: <BsHouseDoor className="text-lg" />, label: "Jardin" },
                             { icon: <MdLocalParking className="text-lg" />, label: "Garage" },
                             { icon: <GiHeatHaze className="text-lg" />, label: "Climatisation" },
-                            { icon: <BiCctv className="text-lg" />, label: "Sécurité 24/7" },
-                            { icon: <BsHouseFill className="text-lg" />, label: "Meublé" },
-                            { icon: <FiWifi className="text-lg" />, label: "Internet" },
+                            // { icon: <BiCctv className="text-lg" />, label: "Sécurité 24/7" },
+                            // { icon: <BsHouseFill className="text-lg" />, label: "Meublé" },
+                            // { icon: <FiWifi className="text-lg" />, label: "Internet" },
                             { icon: <GiWaterTank className="text-lg" />, label: "Bâche à eau" },
                             { icon: <GiPumpkin className="text-lg" />, label: "Suppresseur" },
                             { icon: <GiHeatHaze className="text-lg" />, label: "Chauffe-eau" },
@@ -590,19 +629,40 @@ const OffersPage = () => {
       <section className="py-16 px-4 max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900">
-            {filteredProperties.length} biens disponibles
+            {sortedProperties.length} biens disponibles
           </h2>
-          <div className="flex items-center gap-4">
-            <label className="text-gray-600" id="sort-by">Trier par:</label>
-            <select 
-              className="rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              aria-labelledby="sort-by"
-            >
-              <option>Prix croissant</option>
-              <option>Prix décroissant</option>
-              <option>Plus récent</option>
-              <option>Plus ancien</option>
-            </select>
+          <div className="relative inline-block">
+            <div className="flex items-center gap-3">
+              <label className="text-gray-600 font-medium hidden md:inline-block" id="sort-by">
+                Trier par:
+              </label>
+              <div className="relative">
+                <select 
+                  className="appearance-none bg-white pl-4 pr-10 py-2.5 rounded-xl border border-gray-200 shadow-sm text-gray-700 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1A1A2E] focus:border-transparent cursor-pointer font-medium min-w-[180px]"
+                  aria-labelledby="sort-by"
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value)}
+                >
+                  <option value="Prix décroissant">
+                    Prix décroissant
+                  </option>
+                  <option value="Prix croissant">
+                    Prix croissant
+                  </option>
+                  <option value="Plus récent">
+                    Plus récent
+                  </option>
+                  <option value="Plus ancien">
+                    Plus ancien
+                  </option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                  <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -612,7 +672,7 @@ const OffersPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProperties.map((property) => {
+            {sortedProperties.map((property) => {
               const specs = extractSpecs(property.attributes.features);
               return (
                 <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300">
@@ -728,7 +788,7 @@ const OffersPage = () => {
           </div>
         )}
 
-        {filteredProperties.length === 0 && !loading && (
+        {sortedProperties.length === 0 && !loading && (
           <div className="text-center py-12">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Aucun bien ne correspond à vos critères

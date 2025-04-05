@@ -4,21 +4,21 @@ import Image from 'next/image';
 
 const team = [
   {
-    name: 'Marie Dupont',
-    role: 'Directrice',
-    image: '/images/team/marie.jpg',
-    description: 'Plus de 15 ans d&apos;expérience dans l&apos;immobilier de luxe',
+    name: 'Vann Beverly',
+    role: 'Fondateur',
+    image: '/images/Profile_vann.jpg',
+    description: "Plus de 10 ans d'expérience dans l'immobilier de luxe",
   },
   {
     name: 'Jean Martin',
     role: 'Responsable Commercial',
-    image: '/images/team/jean.jpg',
+    image: '/images/profil.jpg',
     description: 'Expert en négociation et développement commercial',
   },
   {
     name: 'Sophie Laurent',
     role: 'Responsable Marketing',
-    image: '/images/team/sophie.jpg',
+    image: '/images/profil.jpg',
     description: 'Spécialiste en communication immobilière',
   },
 ];
@@ -45,7 +45,7 @@ const AboutPage = () => {
       <section className="relative h-[60vh] bg-gray-900">
         <div className="absolute inset-0 bg-black/50 z-10" />
         <Image
-          src="/images/about-hero.jpg"
+          src="/images/apropos.jpg"
           alt="À propos de MVB Immobilier"
           fill
           className="object-cover"
@@ -82,7 +82,7 @@ const AboutPage = () => {
             </div>
             <div className="relative h-[400px]">
               <Image
-                src="/images/about-office.jpg"
+                src="/images/test1.jpg"
                 alt="Notre bureau"
                 fill
                 className="object-cover rounded-lg"

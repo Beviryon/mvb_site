@@ -197,7 +197,7 @@ const PortfolioPage = () => {
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-portfolio.jpg"
+            src="/images/portfolio/commercial-1.jpg"
             alt="Notre portfolio immobilier"
             fill
             className="object-cover"

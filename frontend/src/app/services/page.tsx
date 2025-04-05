@@ -10,27 +10,6 @@ const DEFAULT_SERVICES: Service[] = [
   {
     id: 1,
     attributes: {
-      title: "Consultation immobilière",
-      description: "Notre service de consultation immobilière vous accompagne dans tous vos projets immobiliers.",
-      icon: "consultation",
-      price: "À partir de 50.000 FCFA",
-      features: ["Analyse de votre situation", "Étude de marché", "Conseils personnalisés"],
-      slug: "consultation-immobiliere",
-      createdAt: "2024-03-25T00:00:00.000Z",
-      updatedAt: "2024-03-25T00:00:00.000Z",
-      image: {
-        data: {
-          attributes: {
-            url: "/images/services/location.jpg",
-            alternativeText: "Consultation immobilière"
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 2,
-    attributes: {
       title: "Gestion locative",
       description: "Nous gérons vos biens immobiliers en location de manière professionnelle.",
       icon: "gestion",
@@ -42,7 +21,7 @@ const DEFAULT_SERVICES: Service[] = [
       image: {
         data: {
           attributes: {
-            url: "/images/services/construction.jpg",
+            url: "/images/services/test3.jpg",
             alternativeText: "Gestion locative"
           }
         }
@@ -50,7 +29,7 @@ const DEFAULT_SERVICES: Service[] = [
     }
   },
   {
-    id: 3,
+    id: 2,
     attributes: {
       title: "Transaction immobilière",
       description: "Accompagnement personnalisé pour l'achat ou la vente de votre bien immobilier.",
@@ -63,7 +42,7 @@ const DEFAULT_SERVICES: Service[] = [
       image: {
         data: {
           attributes: {
-            url: "/images/services/vente-achat.jpg",
+            url: "/images/services/test1.jpg",
             alternativeText: "Transaction immobilière"
           }
         }
@@ -71,7 +50,7 @@ const DEFAULT_SERVICES: Service[] = [
     }
   },
   {
-    id: 4,
+    id: 3,
     attributes: {
       title: "Expertise immobilière",
       description: "Évaluation précise de la valeur de votre bien immobilier.",
@@ -84,7 +63,7 @@ const DEFAULT_SERVICES: Service[] = [
       image: {
         data: {
           attributes: {
-            url: "/images/services/services_immo.jpg",
+            url: "/images/services/test2.jpg",
             alternativeText: "Expertise immobilière"
           }
         }
@@ -92,7 +71,7 @@ const DEFAULT_SERVICES: Service[] = [
     }
   },
   {
-    id: 5,
+    id: 4,
     attributes: {
       title: "Conseil en Investissement",
       description: "Optimisez vos investissements immobiliers grâce à notre expertise. Nous vous aidons à identifier les meilleures opportunités du marché.",
@@ -105,10 +84,13 @@ const DEFAULT_SERVICES: Service[] = [
         "Stratégie d'investissement",
         "Suivi personnalisé"
       ],
+      slug: "conseil-en-investissement",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
-            url: "/images/services/gestion-locative.png",
+            url: "/images/services/test3.jpg",
             alternativeText: "Conseil en investissement"
           }
         }
@@ -116,7 +98,7 @@ const DEFAULT_SERVICES: Service[] = [
     }
   },
   {
-    id: 6,
+    id: 5,
     attributes: {
       title: "Rénovation et Travaux",
       description: "Service clé en main pour la rénovation et l'amélioration de vos biens immobiliers. De la conception à la réalisation, nous gérons votre projet.",
@@ -129,10 +111,13 @@ const DEFAULT_SERVICES: Service[] = [
         "Suivi de chantier",
         "Garantie décennale"
       ],
+      slug: "renovation-et-travaux",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
-            url: "/images/services/gestion-locative.png",
+            url: "/images/services/test3.jpg",
             alternativeText: "Rénovation et travaux"
           }
         }
@@ -140,31 +125,7 @@ const DEFAULT_SERVICES: Service[] = [
     }
   },
   {
-    id: 7,
-    attributes: {
-      title: "Expertise Immobilière",
-      description: "Évaluation professionnelle de votre bien immobilier. Nos experts certifiés vous fournissent une estimation précise basée sur des données du marché.",
-      icon: "📊",
-      price: "À partir de 300.000 FCFA",
-      features: [
-        "Visite détaillée",
-        "Analyse comparative",
-        "Rapport d'expertise",
-        "Documentation complète",
-        "Conseils personnalisés"
-      ],
-      image: {
-        data: {
-          attributes: {
-            url: "/images/services/gestion-locative.png",
-            alternativeText: "Expertise immobilière"
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 8,
+    id: 6,
     attributes: {
       title: "Conciergerie",
       description: "Service premium de gestion quotidienne de votre propriété. Nous prenons soin de votre bien comme si c'était le nôtre.",
@@ -177,11 +138,149 @@ const DEFAULT_SERVICES: Service[] = [
         "Gestion des urgences 24/7",
         "Reporting hebdomadaire"
       ],
+      slug: "conciergerie",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
-            url: "/images/services/gestion-locative.png",
+            url: "/images/services/test3.jpg",
             alternativeText: "Conciergerie"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 7,
+    attributes: {
+      title: "Construction",
+      description: "Réalisation de projets de construction résidentielle et commerciale avec une attention particulière aux détails et à la qualité.",
+      icon: "🏗️",
+      price: "Sur devis",
+      features: [
+        "Étude de faisabilité",
+        "Plans architecturaux",
+        "Gestion des permis",
+        "Suivi de chantier",
+        "Contrôle qualité"
+      ],
+      slug: "construction",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test2.jpg",
+            alternativeText: "Service de construction"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 8,
+    attributes: {
+      title: "Aménagement et Travaux sur Mesure",
+      description: "Solutions d'aménagement personnalisées pour optimiser vos espaces et créer un environnement unique adapté à vos besoins.",
+      icon: "🔨",
+      price: "Sur devis",
+      features: [
+        "Design personnalisé",
+        "Optimisation d'espace",
+        "Choix des matériaux",
+        "Installation professionnelle",
+        "Finitions soignées"
+      ],
+      slug: "amenagement-travaux-sur-mesure",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test1.jpg",
+            alternativeText: "Aménagement sur mesure"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 9,
+    attributes: {
+      title: "Suivi de Projet",
+      description: "Accompagnement complet de votre projet immobilier, de la conception à la livraison, avec un suivi rigoureux à chaque étape.",
+      icon: "📋",
+      price: "Sur devis",
+      features: [
+        "Planning détaillé",
+        "Coordination des intervenants",
+        "Contrôle budgétaire",
+        "Reporting régulier",
+        "Gestion des imprévus"
+      ],
+      slug: "suivi-de-projet",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test2.jpg",
+            alternativeText: "Suivi de projet"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 10,
+    attributes: {
+      title: "Conception sur Mesure",
+      description: "Création de projets architecturaux uniques adaptés à vos envies et besoins, avec une approche créative et fonctionnelle.",
+      icon: "✏️",
+      price: "Sur devis",
+      features: [
+        "Étude des besoins",
+        "Conception 3D",
+        "Plans détaillés",
+        "Choix des matériaux",
+        "Conseils personnalisés"
+      ],
+      slug: "conception-sur-mesure",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test3.jpg",
+            alternativeText: "Conception sur mesure"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 11,
+    attributes: {
+      title: "Location Immobilière",
+      description: "Large sélection de biens immobiliers à louer : maisons, appartements, studios, locaux commerciaux. Nous vous accompagnons dans votre recherche du bien idéal.",
+      icon: "🏠",
+      price: "Selon le bien",
+      features: [
+        "Maisons et villas",
+        "Appartements tout confort",
+        "Studios meublés",
+        "Locaux commerciaux",
+        "Visites personnalisées"
+      ],
+      slug: "location-immobiliere",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test1.jpg",
+            alternativeText: "Location immobilière"
           }
         }
       }
@@ -238,7 +337,7 @@ const ServicesPage = () => {
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/services/constructiontruction.jpg"
+            src="/images/services/construction.jpg"
             alt="Nos services immobiliers"
             fill
             className="object-cover"
