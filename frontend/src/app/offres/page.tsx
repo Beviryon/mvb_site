@@ -341,7 +341,7 @@ const OffersPage = () => {
           </div>
           
           {/* Barre de recherche principale */}
-          <div className="w-full max-w-4xl bg-white rounded-lg shadow-xl p-4 animate-fade-in-up">
+          <div className="w-full max-w-4xl bg-white text-black rounded-lg shadow-xl p-4 animate-fade-in-up">
             <div className="flex flex-col md:flex-row gap-4">
               <input
                 type="text"
@@ -369,11 +369,11 @@ const OffersPage = () => {
 
                 {/* Contenu de la modale */}
                 <div className="flex items-center justify-center min-h-screen p-4">
-                  <div className="relative bg-[#1A1A2E] rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all">
+                  <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all">
                     {/* En-tête de la modale avec bouton de fermeture */}
                     <div className="sticky top-0 bg-[#1A1A2E] px-8 py-4 border-b border-gray-200 flex justify-between items-center rounded-t-2xl">
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-800">Filtres de recherche</h3>
+                        <h3 className="text-2xl font-bold text-white">Filtres de recherche</h3>
                         <p className="text-gray-600 text-sm">Affinez votre recherche selon vos critères</p>
                       </div>
                       <button
