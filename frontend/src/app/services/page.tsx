@@ -6,26 +6,23 @@ import Link from 'next/link';
 import { getServices, Service } from '@/lib/strapi';
 
 // Données statiques par défaut
-const DEFAULT_SERVICES = [
+const DEFAULT_SERVICES: Service[] = [
   {
     id: 1,
     attributes: {
-      title: "Gestion Locative",
-      description: "Service complet de gestion de vos biens immobiliers en location. Nous nous occupons de tout, de la recherche de locataires à la gestion quotidienne.",
-      icon: "🏠",
-      price: "10% des loyers",
-      features: [
-        "Recherche et sélection des locataires",
-        "Gestion des baux et des loyers",
-        "Suivi des travaux et maintenance",
-        "Gestion administrative complète",
-        "Reporting mensuel"
-      ],
+      title: "Consultation immobilière",
+      description: "Notre service de consultation immobilière vous accompagne dans tous vos projets immobiliers.",
+      icon: "consultation",
+      price: "À partir de 50.000 FCFA",
+      features: ["Analyse de votre situation", "Étude de marché", "Conseils personnalisés"],
+      slug: "consultation-immobiliere",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
-            url: "/images/services/gestion-locative.png",
-            alternativeText: "Gestion locative"
+            url: "/images/services/location.jpg",
+            alternativeText: "Consultation immobilière"
           }
         }
       }
@@ -34,22 +31,19 @@ const DEFAULT_SERVICES = [
   {
     id: 2,
     attributes: {
-      title: "Transaction Immobilière",
-      description: "Accompagnement personnalisé pour l'achat ou la vente de votre bien immobilier. Notre expertise du marché local vous garantit les meilleures opportunités.",
-      icon: "🤝",
-      price: "3% du prix de vente",
-      features: [
-        "Estimation gratuite",
-        "Photos professionnelles",
-        "Marketing ciblé",
-        "Négociation",
-        "Accompagnement juridique"
-      ],
+      title: "Gestion locative",
+      description: "Nous gérons vos biens immobiliers en location de manière professionnelle.",
+      icon: "gestion",
+      price: "À partir de 30.000 FCFA",
+      features: ["Gestion des locataires", "Maintenance", "Suivi des paiements"],
+      slug: "gestion-locative",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
-            url: "/images/services/gestion-locative.png",
-            alternativeText: "Transaction immobilière"
+            url: "/images/services/construction.jpg",
+            alternativeText: "Gestion locative"
           }
         }
       }
@@ -57,6 +51,48 @@ const DEFAULT_SERVICES = [
   },
   {
     id: 3,
+    attributes: {
+      title: "Transaction immobilière",
+      description: "Accompagnement personnalisé pour l'achat ou la vente de votre bien immobilier.",
+      icon: "transaction",
+      price: "À partir de 40.000 FCFA",
+      features: ["Estimation gratuite", "Photos professionnelles", "Marketing ciblé"],
+      slug: "transaction-immobiliere",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/vente-achat.jpg",
+            alternativeText: "Transaction immobilière"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 4,
+    attributes: {
+      title: "Expertise immobilière",
+      description: "Évaluation précise de la valeur de votre bien immobilier.",
+      icon: "expertise",
+      price: "À partir de 35.000 FCFA",
+      features: ["Analyse de marché", "Rapport détaillé", "Conseils personnalisés"],
+      slug: "expertise-immobiliere",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/services_immo.jpg",
+            alternativeText: "Expertise immobilière"
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 5,
     attributes: {
       title: "Conseil en Investissement",
       description: "Optimisez vos investissements immobiliers grâce à notre expertise. Nous vous aidons à identifier les meilleures opportunités du marché.",
@@ -80,7 +116,7 @@ const DEFAULT_SERVICES = [
     }
   },
   {
-    id: 4,
+    id: 6,
     attributes: {
       title: "Rénovation et Travaux",
       description: "Service clé en main pour la rénovation et l'amélioration de vos biens immobiliers. De la conception à la réalisation, nous gérons votre projet.",
@@ -104,7 +140,7 @@ const DEFAULT_SERVICES = [
     }
   },
   {
-    id: 5,
+    id: 7,
     attributes: {
       title: "Expertise Immobilière",
       description: "Évaluation professionnelle de votre bien immobilier. Nos experts certifiés vous fournissent une estimation précise basée sur des données du marché.",
@@ -128,7 +164,7 @@ const DEFAULT_SERVICES = [
     }
   },
   {
-    id: 6,
+    id: 8,
     attributes: {
       title: "Conciergerie",
       description: "Service premium de gestion quotidienne de votre propriété. Nous prenons soin de votre bien comme si c'était le nôtre.",
@@ -159,23 +195,22 @@ const ServicesPage = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchServices = async () => {
       try {
         setLoading(true);
-        const response = await getServices();
-        
-        if (response.data && response.data.length > 0) {
-          setServices(response.data);
+        const data = await getServices();
+        if (data && data.length > 0) {
+          setServices(data);
         }
       } catch (err) {
-        console.error(err);
-        // En cas d'erreur, on garde les données par défaut
+        setError('Erreur lors du chargement des services');
+        console.error('Error fetching services:', err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchServices();
   }, []);
 
   if (loading) {
@@ -203,7 +238,7 @@ const ServicesPage = () => {
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/services/servise_immo.jpg"
+            src="/images/services/constructiontruction.jpg"
             alt="Nos services immobiliers"
             fill
             className="object-cover"
@@ -246,7 +281,7 @@ const ServicesPage = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{service.attributes.title}</h3>
-                  <p className="text-blue-600 font-semibold mb-4">{service.attributes.price}</p>
+                  <p className="text-[#800000] font-semibold mb-4">{service.attributes.price}</p>
                   <p className="text-gray-600 mb-4 line-clamp-3">{service.attributes.description}</p>
                   <div className="space-y-2 mb-4">
                     {service.attributes.features.map((feature, index) => (
@@ -257,8 +292,8 @@ const ServicesPage = () => {
                     ))}
                   </div>
                   <Link
-                    href={`/services/${service.id}`}
-                    className="block text-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105"
+                    href={`/services/${service.attributes.slug}`}
+                    className="block text-center bg-[#1A1A2E] text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105"
                   >
                     En savoir plus
                   </Link>
@@ -270,7 +305,7 @@ const ServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section className="py-20 bg-gradient-to-r bg-[#1A1A2E] to-blue-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Besoin d&apos;un service personnalisé ?
@@ -280,7 +315,7 @@ const ServicesPage = () => {
           </p>
           <Link
             href="/contact"
-            className="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105"
+            className="bg-[#800000] text-white px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105"
           >
             Nous contacter
           </Link>

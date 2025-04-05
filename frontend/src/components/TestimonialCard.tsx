@@ -44,7 +44,7 @@ export default function TestimonialCard({
           <svg
             key={index}
             className={`h-5 w-5 ${
-              index < rating ? 'text-yellow-400' : 'text-gray-300'
+              index < rating ? 'bg-[#800000]' : 'text-gray-300'
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"

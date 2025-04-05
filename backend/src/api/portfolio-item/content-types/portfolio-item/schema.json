@@ -4,41 +4,58 @@
   "info": {
     "singularName": "portfolio-item",
     "pluralName": "portfolio-items",
-    "displayName": "Portfolio Item"
+    "displayName": "PortfolioItem",
+    "description": "Projets du portfolio"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "unique": true
     },
     "description": {
-      "type": "text"
-    },
-    "image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      "type": "richtext",
+      "required": true
     },
     "category": {
       "type": "enumeration",
-      "enum": [
-        "Maison",
-        "Appartement",
-        "Terrain",
-        "Local commercial"
-      ]
+      "enum": ["Résidentiel", "Commercial", "Terrain", "Rénovation"],
+      "required": true
     },
     "location": {
+      "type": "string",
+      "required": true
+    },
+    "completionDate": {
+      "type": "date"
+    },
+    "client": {
       "type": "string"
     },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
     "features": {
+      "type": "json"
+    },
+    "technologies": {
       "type": "json"
     }
   }

@@ -20,6 +20,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({
+  id,
   title,
   description,
   image,
@@ -48,7 +49,7 @@ export default function PropertyCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute top-4 right-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-600 text-white">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#800000] text-white">
             {type === 'vente' ? 'À vendre' : 'À louer'}
           </span>
         </div>
@@ -61,7 +62,7 @@ export default function PropertyCard({
 
         {/* Price */}
         <div className="mb-4">
-          <p className="text-2xl font-bold text-blue-600">{formatPrice(price)}</p>
+          <p className="text-2xl font-bold text-[#800000]">{formatPrice(price)}</p>
           {type === 'location' && <p className="text-sm text-gray-500">/ mois</p>}
         </div>
 
@@ -148,7 +149,7 @@ export default function PropertyCard({
         {/* Action Button */}
         <Link
           href={`/portfolio/${id}`}
-          className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#800000] hover:bg-[#9B1B30] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#800000]"
         >
           Voir les détails
         </Link>

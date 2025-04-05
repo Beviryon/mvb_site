@@ -21,6 +21,7 @@ export interface Property {
     location: string;
     type: string;
     status?: string;
+    slug: string;
     price: string;
     features: string[];
     image: {
@@ -63,6 +64,7 @@ export interface Service {
     icon: string;
     features: string[];
     price: string;
+    slug: string;
     image: {
       data: {
         attributes: {
@@ -131,6 +133,9 @@ export interface PortfolioItem {
     type: string;
     price: string;
     features: string[];
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
     image: {
       data: {
         attributes: {
@@ -139,8 +144,6 @@ export interface PortfolioItem {
         };
       };
     };
-    createdAt: string;
-    updatedAt: string;
   };
 }
 
@@ -235,20 +238,34 @@ export async function getProperties({ type, priceRange, location }: GetPropertie
   return fetchAPI(endpoint);
 }
 
-export async function getProperty(id: string | number) {
-  return fetchAPI<Property>(`/api::property.properties/${id}?populate=*`);
+export async function getProperty(slug: string) {
+  return fetchAPI<Property>(`/api/properties?filters[slug][$eq]=${slug}&populate=*`);
 }
 
 export async function getLocations(): Promise<StrapiResponse<{ attributes: { location: string } }[]>> {
   return fetchAPI('/api/properties?fields[0]=location');
 }
 
-export async function getServices() {
-  return fetchAPI<Service[]>('/services?populate=*');
+export async function getServices(): Promise<Service[]> {
+  try {
+    const response = await fetch(`${STRAPI_API_URL}/api/services?populate=*`);
+    const data: StrapiResponse<Service[]> = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Error fetching services:', error);
+    return [];
+  }
 }
 
-export async function getService(id: string | number) {
-  return fetchAPI<Service>(`/services/${id}?populate=*`);
+export async function getService(slug: string): Promise<Service | null> {
+  try {
+    const response = await fetch(`${STRAPI_API_URL}/api/services?filters[slug][$eq]=${slug}&populate=*`);
+    const data: StrapiResponse<Service[]> = await response.json();
+    return data.data[0] || null;
+  } catch (error) {
+    console.error('Error fetching service:', error);
+    return null;
+  }
 }
 
 export async function getBlogPosts(params: {

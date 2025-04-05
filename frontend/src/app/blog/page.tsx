@@ -266,7 +266,7 @@ const BlogPage = () => {
               onClick={() => setSelectedCategory(null)}
               className={`px-6 py-2 rounded-full transition-all ${
                 selectedCategory === null
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#1A1A2E] text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -278,7 +278,7 @@ const BlogPage = () => {
                 onClick={() => setSelectedCategory(category.attributes.slug)}
                 className={`px-6 py-2 rounded-full transition-all ${
                   selectedCategory === category.attributes.slug
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#1A1A2E] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -307,7 +307,7 @@ const BlogPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                    <span className="bg-[#800000] text-white px-3 py-1 rounded-full text-sm">
                       {post.attributes.category.data.attributes.name}
                     </span>
                   </div>
@@ -330,7 +330,7 @@ const BlogPage = () => {
                   <h2 className="text-xl font-bold mb-3">
                     <Link
                       href={`/blog/${post.attributes.slug}`}
-                      className="hover:text-blue-600 transition-colors"
+                      className="hover:text-red-600 transition-colors"
                     >
                       {post.attributes.title}
                     </Link>
@@ -344,7 +344,7 @@ const BlogPage = () => {
                     </span>
                     <Link
                       href={`/blog/${post.attributes.slug}`}
-                      className="text-blue-600 hover:text-blue-800 font-semibold"
+                      className="text-[#800000] hover:text-red-800 font-semibold"
                     >
                       Lire la suite →
                     </Link>
@@ -357,7 +357,7 @@ const BlogPage = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section className="py-20 bg-gradient-to-r bg-[#1A1A2E] to-blue-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Restez informé
@@ -373,7 +373,7 @@ const BlogPage = () => {
             />
             <button
               type="submit"
-              className="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105"
+              className="bg-[#800000] text-white px-8 py-3 rounded-full transition-all transform hover:scale-105"
             >
               S&apos;inscrire
             </button>

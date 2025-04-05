@@ -50,8 +50,8 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
               onClick={() => setSelectedAction(action.title)}
               className={`p-4 rounded-lg border-2 transition-all ${
                 selectedAction === action.title
-                  ? 'border-blue-600 bg-blue-50'
-                  : 'border-gray-200 hover:border-blue-300'
+                  ? 'border-[#800000] border-[1px] border-solid bg-red-50'
+                  : 'border-gray-200 border-[1px] border-solid hover:border-[#9B1B30]'
               }`}
             >
               <div className="text-4xl mb-2">{action.icon}</div>
@@ -69,7 +69,7 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
                 console.log(`Action sélectionnée : ${selectedAction}`);
                 onClose();
               }}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="w-full bg-[#800000] text-white py-3 rounded-lg font-semibold hover:bg-[#9B1B30] transition-colors"
             >
               Continuer
             </button>

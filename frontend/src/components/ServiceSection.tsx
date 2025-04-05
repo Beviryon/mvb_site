@@ -46,7 +46,7 @@ export default function ServiceSection({
             >
               {/* Service Icon */}
               <div className="p-6 bg-blue-50">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#800000] rounded-lg flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -75,7 +75,7 @@ export default function ServiceSection({
                   {service.features.map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-600">
                       <svg
-                        className="w-5 h-5 text-blue-500 mr-2"
+                        className="w-5 h-5 bg-[#800000] mr-2"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

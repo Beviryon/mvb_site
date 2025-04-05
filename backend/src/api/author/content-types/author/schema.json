@@ -5,7 +5,7 @@
     "singularName": "author",
     "pluralName": "authors",
     "displayName": "Author",
-    "description": "Create and manage authors"
+    "description": "Auteurs des articles de blog"
   },
   "options": {
     "draftAndPublish": true
@@ -13,21 +13,27 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "email": {
       "type": "email",
       "required": true,
       "unique": true
     },
+    "bio": {
+      "type": "richtext"
+    },
     "avatar": {
       "type": "media",
       "multiple": false,
-      "required": false,
       "allowedTypes": ["images"]
     },
-    "bio": {
-      "type": "richtext"
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-post.blog-post",
+      "mappedBy": "author"
     }
   }
 } 

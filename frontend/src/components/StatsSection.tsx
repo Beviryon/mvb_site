@@ -112,7 +112,7 @@ export default function StatsSection({
               >
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-[#800000] text-white">
                       <Icon className="h-6 w-6" aria-hidden="true" />
                     </div>
                   </div>

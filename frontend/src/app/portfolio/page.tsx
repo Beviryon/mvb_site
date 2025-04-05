@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPortfolioItems, getPortfolioCategories, PortfolioItem } from '@/lib/strapi';
+import { getPortfolioItems, PortfolioItem } from '@/lib/strapi';
 
 // Données statiques par défaut
-const DEFAULT_ITEMS = [
+const DEFAULT_ITEMS: PortfolioItem[] = [
   {
     id: 1,
     attributes: {
@@ -16,6 +16,9 @@ const DEFAULT_ITEMS = [
       type: "Vente",
       price: "4.500.000 FCFA",
       features: ["Eco-responsable", "Domotique", "Jardin privatif", "Parking"],
+      slug: "residence-jardins-parc",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
@@ -30,16 +33,19 @@ const DEFAULT_ITEMS = [
     id: 2,
     attributes: {
       title: "Bureaux à louer",
-      description: "Un complexe de bureaux moderne offrant des espaces de travail flexibles et innovants, adapté aux besoins des entreprises d'aujourd'hui.",
+      description: "Un complexe de bureaux modernes offrant des espaces de travail flexibles et innovants, adapté aux besoins des entreprises d'aujourd'hui.",
       location: "Quartier d'affaires",
       type: "Location",
       price: "500 FCFA/mois",
       features: ["Open Space", "Salles de réunion", "Parking souterrain", "Restaurant"],
+      slug: "bureaux-a-louer",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
             url: "/images/portfolio/commercial-1.jpg",
-            alternativeText: "Centre ville Brazzaville  "
+            alternativeText: "Centre ville Brazzaville"
           }
         }
       }
@@ -54,6 +60,9 @@ const DEFAULT_ITEMS = [
       type: "Vente",
       price: "1 250 000 €",
       features: ["Piscine à débordement", "Home cinema", "Cave à vin", "Vue mer"],
+      slug: "villa-bellevue",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
@@ -73,6 +82,9 @@ const DEFAULT_ITEMS = [
       type: "Location",
       price: "1 200 €/mois",
       features: ["Vue mer", "Terrasses", "Ascenseur", "Local à vélos"],
+      slug: "terrasses-du-port",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
@@ -92,6 +104,9 @@ const DEFAULT_ITEMS = [
       type: "Achat",
       price: "780 000 €",
       features: ["Panneaux solaires", "Récupération d'eau", "Boutiques", "Food court"],
+      slug: "green-square",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
@@ -111,6 +126,9 @@ const DEFAULT_ITEMS = [
       type: "Achat",
       price: "2 800 000 €",
       features: ["Parc privé", "Spa", "Salle de réception", "Cave à vin"],
+      slug: "chateau-moderne",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
       image: {
         data: {
           attributes: {
@@ -129,7 +147,6 @@ const PortfolioPage = () => {
   const [items, setItems] = useState<PortfolioItem[]>(DEFAULT_ITEMS);
   const [selectedType, setSelectedType] = useState('Tous');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -208,7 +225,7 @@ const PortfolioPage = () => {
               onClick={() => setSelectedType('Tous')}
               className={`px-6 py-2 rounded-full transition-all ${
                 selectedType === 'Tous'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-[#1A1A2E] text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -220,7 +237,7 @@ const PortfolioPage = () => {
                 onClick={() => setSelectedType(type)}
                 className={`px-6 py-2 rounded-full transition-all ${
                   selectedType === type
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[#1A1A2E] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -240,14 +257,6 @@ const PortfolioPage = () => {
               Array(6).fill(null).map((_, index) => (
                 <SkeletonItem key={index} />
               ))
-            ) : error ? (
-              <div className="col-span-full text-center">
-                <h2 className="text-2xl font-bold text-red-600 mb-4">Erreur</h2>
-                <p className="text-gray-600">{error}</p>
-                <p className="text-gray-600 mt-4">
-                  Voici quelques-unes de nos réalisations en attendant :
-                </p>
-              </div>
             ) : (
               filteredItems.map((item) => (
                 <div
@@ -263,14 +272,14 @@ const PortfolioPage = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <div className="absolute top-4 right-4 bg-[#800000] text-white px-4 py-2 rounded-full text-sm font-medium">
                       {item.attributes.type}
                     </div>
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2">{item.attributes.title}</h3>
                     <p className="text-gray-600 mb-2">{item.attributes.location}</p>
-                    <p className="text-blue-600 font-semibold mb-4">{item.attributes.price}</p>
+                    <p className="text-[#800000] font-semibold mb-4">{item.attributes.price}</p>
                     <p className="text-gray-600 mb-4 line-clamp-3">{item.attributes.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {item.attributes.features.map((feature, index) => (
@@ -283,8 +292,8 @@ const PortfolioPage = () => {
                       ))}
                     </div>
                     <Link
-                      href={`/portfolio/${item.id}`}
-                      className="text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                      href={`/portfolio/${item.attributes.slug}`}
+                      className="text-[#800000] font-medium hover:text-red-700 transition-colors"
                     >
                       Voir les détails →
                     </Link>
@@ -297,7 +306,7 @@ const PortfolioPage = () => {
       </section>
 
       {/* CTA Section - Contenu Statique */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+      <section className="py-20 bg-gradient-to-r bg-[#1A1A2E] to-blue-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Vous avez un projet similaire ?
@@ -308,13 +317,13 @@ const PortfolioPage = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105"
+              className="bg-[#800000] text-white px-8 py-3 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105"
             >
               Nous contacter
             </Link>
             <Link
               href="/services"
-              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 transition-all transform hover:scale-105"
+              className="bg-transparent border-2 border-white border-solid text-white px-8 py-3 rounded-full hover:bg-white/10 transition-all transform hover:scale-105"
             >
               Voir nos services
             </Link>

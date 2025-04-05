@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "find": {
+      "enabled": true,
+      "roles": ["public", "authenticated", "admin"]
+    },
+    "findOne": {
+      "enabled": true,
+      "roles": ["public", "authenticated", "admin"]
+    },
+    "create": {
+      "enabled": true,
+      "roles": ["admin", "authenticated"]
+    },
+    "update": {
+      "enabled": true,
+      "roles": ["admin"]
+    },
+    "delete": {
+      "enabled": true,
+      "roles": ["admin"]
+    },
+    "publish": {
+      "enabled": true,
+      "roles": ["admin"]
+    },
+    "unpublish": {
+      "enabled": true,
+      "roles": ["admin"]
+    }
+  }
+} 

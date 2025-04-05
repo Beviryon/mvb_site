@@ -102,7 +102,7 @@ export default function TestimonialsSection({
                 <svg
                   key={index}
                   className={`h-5 w-5 ${
-                    index < currentTestimonial.rating ? 'text-yellow-400' : 'text-gray-300'
+                    index < currentTestimonial.rating ? 'bg-[#800000]' : 'text-gray-300'
                   }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
@@ -160,7 +160,7 @@ export default function TestimonialsSection({
                 key={index}
                 onClick={() => handleDotClick(index)}
                 className={`h-2 w-2 rounded-full ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+                  index === currentIndex ? 'bg-[#800000]' : 'bg-gray-300'
                 }`}
                 aria-label={`Aller au témoignage ${index + 1}`}
               />

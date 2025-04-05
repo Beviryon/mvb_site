@@ -69,6 +69,24 @@ export interface ServicesService extends Struct.ComponentSchema {
   };
 }
 
+export interface SpecificationsSpecifications extends Struct.ComponentSchema {
+  collectionName: 'components_specifications_specifications';
+  info: {
+    description: 'Sp\u00E9cifications techniques du bien';
+    displayName: 'Specifications';
+  };
+  attributes: {
+    anneeConstruction: Schema.Attribute.String;
+    chambres: Schema.Attribute.String;
+    etage: Schema.Attribute.String;
+    orientation: Schema.Attribute.String;
+    parking: Schema.Attribute.String;
+    sallesDeBain: Schema.Attribute.String;
+    surface: Schema.Attribute.String;
+    terrain: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -77,6 +95,7 @@ declare module '@strapi/strapi' {
       'components.testimonial': ComponentsTestimonial;
       'contact.social-link': ContactSocialLink;
       'services.service': ServicesService;
+      'specifications.specifications': SpecificationsSpecifications;
     }
   }
 }

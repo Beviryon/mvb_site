@@ -1,42 +1,66 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "home_pages",
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "Home page"
+    "displayName": "HomePage",
+    "description": "Données de la page d'accueil"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
     "heroTitle": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "heroSubtitle": {
-      "type": "string"
+    "heroDescription": {
+      "type": "text",
+      "required": true
     },
     "heroImage": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
-      "multiple": true
-    },
-    "properties": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::property.property",
-      "mappedBy": "home_page"
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
     },
     "services": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::service.service",
       "mappedBy": "home_page"
+    },
+    "featuredProperties": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::property.property"
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::testimonial.testimonial"
+    },
+    "stats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::stat.stat"
+    },
+    "ctaTitle": {
+      "type": "string",
+      "required": true
+    },
+    "ctaDescription": {
+      "type": "text",
+      "required": true
+    },
+    "ctaButtonText": {
+      "type": "string",
+      "required": true
+    },
+    "ctaButtonLink": {
+      "type": "string",
+      "required": true
     }
   }
 }

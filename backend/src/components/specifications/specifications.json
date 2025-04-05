@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_specifications_specifications",
+  "info": {
+    "displayName": "Specifications",
+    "description": "Spécifications techniques du bien"
+  },
+  "options": {},
+  "attributes": {
+    "surface": {
+      "type": "string"
+    },
+    "terrain": {
+      "type": "string"
+    },
+    "chambres": {
+      "type": "string"
+    },
+    "sallesDeBain": {
+      "type": "string"
+    },
+    "anneeConstruction": {
+      "type": "string"
+    },
+    "parking": {
+      "type": "string"
+    },
+    "etage": {
+      "type": "string"
+    },
+    "orientation": {
+      "type": "string"
+    }
+  }
+} 

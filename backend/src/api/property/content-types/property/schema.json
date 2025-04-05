@@ -5,7 +5,7 @@
     "singularName": "property",
     "pluralName": "properties",
     "displayName": "Property",
-    "description": "Create and manage properties"
+    "description": "Biens immobiliers disponibles"
   },
   "options": {
     "draftAndPublish": true
@@ -13,58 +13,77 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "description": {
       "type": "richtext",
-      "required": true
-    },
-    "price": {
-      "type": "decimal",
       "required": true
     },
     "location": {
       "type": "string",
       "required": true
     },
-    "bedrooms": {
-      "type": "integer",
+    "type": {
+      "type": "enumeration",
+      "enum": ["Vente", "Location"],
       "required": true
     },
-    "bathrooms": {
-      "type": "integer",
+    "status": {
+      "type": "enumeration",
+      "enum": ["Disponible", "En cours de transaction", "Vendu/Loué", "Bientôt disponible", "Réservé"],
       "required": true
     },
-    "area": {
-      "type": "decimal",
-      "required": true
-    },
-    "images": {
-      "type": "media",
-      "multiple": true,
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "unique": true
+    },
+    "price": {
+      "type": "string",
+      "required": true
     },
     "features": {
       "type": "json"
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "available",
-        "sold",
-        "rented"
-      ],
-      "default": "available",
-      "required": true
+    "specifications": {
+      "type": "component",
+      "component": "specifications.specifications",
+      "repeatable": false
     },
-    "home_page": {
+    "amenities": {
+      "type": "json"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "testimonials": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::home-page.home-page",
-      "inversedBy": "properties"
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial",
+      "mappedBy": "property"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "views": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastUpdated": {
+      "type": "datetime",
+      "default": "now"
     }
   }
 }

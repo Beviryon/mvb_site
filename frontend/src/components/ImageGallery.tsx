@@ -36,7 +36,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
         {/* Navigation Buttons */}
         <button
           onClick={handlePrevious}
-          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-[#800000]/80 p-2 text-white hover:bg-[#9B1B30] focus:outline-none focus:ring-2 focus:ring-[#800000]"
           title="Image précédente"
         >
           <svg
@@ -55,7 +55,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-gray-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-[#800000]/80 p-2 text-white hover:bg-[#9B1B30] focus:outline-none focus:ring-2 focus:ring-[#800000]"
           title="Image suivante"
         >
           <svg
@@ -87,7 +87,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
             onClick={() => setSelectedImageIndex(index)}
             className={`relative aspect-square overflow-hidden rounded-lg ${
               selectedImageIndex === index
-                ? 'ring-2 ring-blue-500'
+                ? 'ring-2 ring-[#800000]'
                 : 'hover:ring-2 hover:ring-gray-300'
             }`}
             title={`Voir l'image ${index + 1} de ${images.length}`}
