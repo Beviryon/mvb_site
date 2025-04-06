@@ -11,20 +11,17 @@ const DEFAULT_SERVICE = {
   id: 1,
   attributes: {
     title: "Consultation immobilière",
-    description: "Notre service de consultation immobilière vous accompagne dans tous vos projets immobiliers. Nous vous guidons à chaque étape pour vous aider à prendre les meilleures décisions.",
+    description: "Notre service de consultation immobilière vous accompagne dans tous vos projets immobiliers.",
     icon: "consultation",
-    features: [
-      "Analyse de votre situation",
-      "Étude de marché",
-      "Conseils personnalisés",
-      "Accompagnement dans les négociations",
-      "Suivi de projet"
-    ],
     price: "À partir de 50.000 FCFA",
+    features: ["Analyse de votre situation", "Étude de marché", "Conseils personnalisés"],
+    slug: "consultation-immobiliere",
+    createdAt: "2024-03-25T00:00:00.000Z",
+    updatedAt: "2024-03-25T00:00:00.000Z",
     image: {
       data: {
         attributes: {
-          url: "/images/services/consultation.jpg",
+          url: "/images/services/location.jpg",
           alternativeText: "Consultation immobilière"
         }
       }
