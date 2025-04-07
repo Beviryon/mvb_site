@@ -57,7 +57,7 @@ const AboutPage = () => {
               À Propos de MVB Immobilier
             </h1>
             <p className="text-xl">
-              Votre partenaire de confiance dans l&apos;immobilier depuis plus de 15 ans
+              Votre partenaire de confiance dans l&apos;immobilier depuis plus de 10 ans
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const AboutPage = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6">Notre Histoire</h2>
               <p className="text-gray-600 mb-4">
-                Fondée en 2008, MVB Immobilier s&apos;est imposée comme un acteur majeur dans le secteur immobilier.
+                Fondée en 2016, MVB Immobilier s&apos;est imposée comme un acteur majeur dans le secteur immobilier.
                 Notre mission est d&apos;accompagner nos clients dans tous leurs projets immobiliers avec professionnalisme
                 et expertise.
               </p>
