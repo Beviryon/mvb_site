@@ -111,8 +111,8 @@ const PropertyDetailPage = () => {
       try {
         setLoading(true);
         const data = await getProperty(slug);
-        if (data) {
-          setProperty(data);
+        if (data && data.data) {
+          setProperty(data.data);
         }
       } catch (err) {
         setError('Erreur lors du chargement de la propriété');
@@ -213,7 +213,7 @@ const PropertyDetailPage = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Spécifications</h2>
                 <dl className="grid grid-cols-2 gap-4">
-                  {Object.entries(property.attributes.specifications).map(([key, value]) => (
+                  {property.attributes.specifications && Object.entries(property.attributes.specifications).map(([key, value]) => (
                     <div key={key}>
                       <dt className="text-gray-600 capitalize">{key}</dt>
                       <dd className="font-medium">{value}</dd>

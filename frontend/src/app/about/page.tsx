@@ -4,22 +4,39 @@ import Image from 'next/image';
 
 const team = [
   {
-    name: 'Vann Beverly',
+    name: 'Van Beverly OUELA',
     role: 'Fondateur',
     image: '/images/Profile_vann.jpg',
     description: "Plus de 10 ans d'expérience dans l'immobilier de luxe",
   },
   {
-    name: 'Jean Martin',
-    role: 'Responsable Commercial',
+    name: 'Donald Xavier ONTSIAYI',
+    role: 'Responsable marketing',
+    image: '/images/profil.jpg',
+    description: 'Spécialiste en communication immobilière ',
+  },
+  {
+    name: 'Céleste Loïck MALANDA',
+    role: 'Responsable commercial',
     image: '/images/profil.jpg',
     description: 'Expert en négociation et développement commercial',
   },
   {
+<<<<<<< HEAD
     name: 'Xavier Donald',
     role: 'Responsable Communication',
+=======
+    name: 'MOUNDOSSO Floretta',
+    role: 'Secrétaire comptable',
+>>>>>>> 089f927a2243efc928c5a3fe0fdd25218f4d938c
     image: '/images/profil.jpg',
-    description: 'Spécialiste en communication immobilière',
+    description: "Spécialiste en gestion administrative et financière, assurant la tenue des comptes et le suivi des opérations comptables avec rigueur et précision",
+  },
+  {
+    name: 'MOUELE Djenifer Rocksy',
+    role: 'Infographiste',
+    image: '/images/profil.jpg',
+    description: 'Experte en design graphique et en communication visuelle',
   },
 ];
 
@@ -57,7 +74,7 @@ const AboutPage = () => {
               À Propos de MVB Immobilier
             </h1>
             <p className="text-xl">
-              Votre partenaire de confiance dans l&apos;immobilier depuis plus de 15 ans
+              Votre partenaire de confiance dans l&apos;immobilier depuis plus de 10 ans
             </p>
           </div>
         </div>
@@ -70,7 +87,7 @@ const AboutPage = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6">Notre Histoire</h2>
               <p className="text-gray-600 mb-4">
-                Fondée en 2008, MVB Immobilier s&apos;est imposée comme un acteur majeur dans le secteur immobilier.
+                Fondée en 2016, MVB Immobilier s&apos;est imposée comme un acteur majeur dans le secteur immobilier.
                 Notre mission est d&apos;accompagner nos clients dans tous leurs projets immobiliers avec professionnalisme
                 et expertise.
               </p>

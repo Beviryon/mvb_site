@@ -176,9 +176,30 @@ const DEFAULT_CATEGORIES = [
   }
 ];
 
+// Définir l'interface pour les catégories
+interface Category {
+  id: number;
+  attributes: {
+    name: string;
+    slug: string;
+  };
+}
+
+interface StrapiResponse<T> {
+  data: T[];
+  meta: {
+    pagination?: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+
 const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPost[]>(DEFAULT_POSTS);
-  const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
+  const [categories, setCategories] = useState<Category[]>(DEFAULT_CATEGORIES);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -195,12 +216,13 @@ const BlogPage = () => {
         if (postsResponse.data && postsResponse.data.length > 0) {
           setPosts(postsResponse.data);
         }
-        if (categoriesResponse.data && categoriesResponse.data.length > 0) {
-          setCategories(categoriesResponse.data);
+        if (categoriesResponse && Array.isArray(categoriesResponse.data)) {
+          const categoryData: Category[] = categoriesResponse.data;
+          setCategories(categoryData);
         }
       } catch (err) {
         console.error(err);
-        // En cas d'erreur, on garde les données par défaut
+        setError('Erreur lors du chargement des données');
       } finally {
         setLoading(false);
       }

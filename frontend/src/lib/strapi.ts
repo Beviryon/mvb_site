@@ -290,8 +290,8 @@ export async function getBlogPost(id: string | number) {
 }
 
 export async function getBlogCategories() {
-  return fetchAPI<{ data: { attributes: { category: string } }[] }>(
-    '/categories?fields[0]=category'
+  return fetchAPI<{ data: { id: number, attributes: { name: string, slug: string } }[] }>(
+    '/categories?populate=*'
   );
 }
 

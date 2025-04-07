@@ -1,13 +1,17 @@
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 
-// Données statiques pour le développement
-const mockData = {
+// Définir un type pour les données mockées
+interface MockData {
+  [key: string]: any;  // Permet l'indexation par chaîne de caractères
+}
+
+const mockData: MockData = {
   homepage: {
     data: {
       attributes: {
-        heroTitle: "Bienvenue chez MVB Immobilier",
-        heroSubtitle: "Votre partenaire immobilier de confiance",
-        servicesDescription: "Nous vous accompagnons dans tous vos projets immobiliers",
+        heroTitle: "Trouvez votre bien idéal",
+        heroSubtitle: "Des propriétés d'exception sélectionnées pour vous",
+        servicesDescription: "Nos services immobiliers",
         heroImage: {
           data: {
             attributes: {
@@ -19,69 +23,15 @@ const mockData = {
     }
   },
   properties: {
-    data: [
-      {
-        id: 1,
-        attributes: {
-          title: "Maison de luxe",
-          description: "Une magnifique maison avec jardin",
-          price: 500000,
-          location: "Paris",
-          images: {
-            data: [
-              {
-                attributes: {
-                  url: "/images/property1.jpg"
-                }
-              }
-            ]
-          }
-        }
-      },
-      {
-        id: 2,
-        attributes: {
-          title: "Appartement moderne",
-          description: "Bel appartement rénové",
-          price: 350000,
-          location: "Lyon",
-          images: {
-            data: [
-              {
-                attributes: {
-                  url: "/images/property2.jpg"
-                }
-              }
-            ]
-          }
-        }
-      }
-    ]
+    data: []
   },
   testimonials: {
-    data: [
-      {
-        id: 1,
-        attributes: {
-          name: "Marie Dupont",
-          content: "Excellent service, je recommande !",
-          rating: 5
-        }
-      },
-      {
-        id: 2,
-        attributes: {
-          name: "Jean Martin",
-          content: "Très professionnel, merci !",
-          rating: 4
-        }
-      }
-    ]
+    data: []
   }
 };
 
-export async function fetchAPI(path: string) {
-  // En développement, retourner les données statiques
+export async function fetchAPI<T>(path: string): Promise<T> {
+  // En développement, utiliser les données mockées
   if (process.env.NODE_ENV === 'development') {
     const mockPath = path.replace('/api/', '');
     return mockData[mockPath] || { data: null };
