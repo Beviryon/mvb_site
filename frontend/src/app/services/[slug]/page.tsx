@@ -1,145 +1,305 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { getService, Service } from '@/lib/strapi';
-
-// Service par défaut
-const DEFAULT_SERVICE = {
-  id: 1,
-  attributes: {
-    title: "Consultation immobilière",
-    description: "Notre service de consultation immobilière vous accompagne dans tous vos projets immobiliers.",
-    icon: "consultation",
-    price: "À partir de 50.000 FCFA",
-    features: ["Analyse de votre situation", "Étude de marché", "Conseils personnalisés"],
-    slug: "consultation-immobiliere",
-    createdAt: "2024-03-25T00:00:00.000Z",
-    updatedAt: "2024-03-25T00:00:00.000Z",
-    image: {
-      data: {
-        attributes: {
-          url: "/images/services/location.jpg",
-          alternativeText: "Consultation immobilière"
-        }
-      }
-    }
-  }
-};
+import { Service } from '@/lib/strapi';
+import { DEFAULT_SERVICES } from '../page';
 
 const ServiceDetailPage = () => {
-  const [service, setService] = useState<Service>(DEFAULT_SERVICE);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const params = useParams();
-  const slug = params.slug as string;
+  const [service, setService] = useState<Service | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const data = await getService(slug);
-        if (data) {
-          setService(data);
-        }
-      } catch (err) {
-        setError('Erreur lors du chargement du service');
-        console.error('Error fetching service:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [slug]);
+    const currentService = DEFAULT_SERVICES.find(
+      (s: Service) => s.attributes.slug === params.slug
+    );
+    setService(currentService || null);
+    setLoading(false);
+  }, [params.slug]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-1/4 mb-8"></div>
-            <div className="h-96 bg-gray-200 rounded mb-8"></div>
-            <div className="space-y-4">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-            </div>
-          </div>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
       </div>
     );
   }
 
-  if (error) {
+  if (!service) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-4">
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-            {error}
-          </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Service non trouvé</h2>
+          <Link href="/services" className="text-blue-600 hover:underline">
+            Retour aux services
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        <Link href="/services" className="text-blue-600 hover:text-blue-800 mb-8 inline-block">
-          ← Retour aux services
-        </Link>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation rapide */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Link href="/services" className="text-gray-600 hover:text-gray-900 flex items-center space-x-2">
+            <span>←</span>
+            <span>Retour aux services</span>
+          </Link>
+        </div>
+      </nav>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="relative h-96">
-            <Image
-              src={service.attributes.image.data.attributes.url}
-              alt={service.attributes.image.data.attributes.alternativeText}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-            />
-          </div>
-
-          <div className="p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+      {/* Hero Section avec image de fond */}
+      <section className="relative h-[60vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={service.attributes.image.data.attributes.url}
+            alt={service.attributes.image.data.attributes.alternativeText}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
+        </div>
+        <div className="relative h-full flex items-center justify-center">
+          <div className="max-w-4xl mx-auto px-4 text-center text-white">
+            <div className="text-6xl mb-6">{service.attributes.icon}</div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {service.attributes.title}
             </h1>
+            <p className="text-2xl text-[#800000] font-semibold bg-white/10 inline-block px-6 py-2 rounded-full">
+              {service.attributes.price}
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <div className="flex items-center space-x-4 mb-6">
-              <span className="text-2xl font-bold text-blue-600">
-                {service.attributes.price}
-              </span>
-            </div>
+      {/* Contenu principal */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Colonne principale */}
+          <div className="lg:col-span-2">
+            {/* Description détaillée */}
+            <section className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">À propos de ce service</h2>
+              <div className="prose max-w-none text-gray-600">
+                <p className="text-lg leading-relaxed mb-6">{service.attributes.description}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                  {getServiceDetails(service.attributes.slug).map((detail, index) => (
+                    <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                      <h3 className="font-semibold text-gray-900 mb-3">{detail.title}</h3>
+                      <p className="text-gray-600">{detail.content}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
 
-            <div className="prose max-w-none mb-8">
-              {service.attributes.description.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Caractéristiques</h2>
-              <ul className="space-y-2">
-                {service.attributes.features.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
+            {/* Processus de travail */}
+            <section className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Notre processus</h2>
+              <div className="space-y-6">
+                {getServiceProcess(service.attributes.slug).map((step, index) => (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1A1A2E] text-white flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{step.title}</h3>
+                      <p className="text-gray-600">{step.description}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            {/* Caractéristiques */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 sticky top-8">
+              <h2 className="text-xl font-bold mb-6 text-gray-900">Caractéristiques</h2>
+              <div className="space-y-4">
+                {service.attributes.features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                      ✓
+                    </div>
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="mt-8 space-y-4">
+                <Link
+                  href="/contact"
+                  className="block text-center bg-[#1A1A2E] text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105"
+                >
+                  Demander un devis
+                </Link>
+                <Link
+                  href="/contact"
+                  className="block text-center border-2 border-[#1A1A2E] border-solid text-[#1A1A2E] px-6 py-3 rounded-lg hover:bg-gray-50 transition-all"
+                >
+                  Nous contacter
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Section FAQ */}
+      <section className="bg-gray-100 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Questions fréquentes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {getServiceFAQ(service.attributes.slug).map((faq, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-md p-6">
+                <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                <p className="text-gray-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
+};
+
+// Fonction pour obtenir les détails spécifiques selon le service
+const getServiceDetails = (slug: string) => {
+  const details: { [key: string]: Array<{ title: string; content: string }> } = {
+    'location-vente-achat': [
+      {
+        title: "Expertise du marché local",
+        content: "Notre équipe possède une connaissance approfondie du marché immobilier local, permettant une évaluation précise et des conseils avisés."
+      },
+      {
+        title: "Accompagnement personnalisé",
+        content: "Nous vous accompagnons à chaque étape de votre projet, de la recherche à la finalisation de la transaction."
+      },
+      {
+        title: "Sécurité des transactions",
+        content: "Nous garantissons des transactions sécurisées avec un suivi juridique complet et une transparence totale."
+      },
+      {
+        title: "Services sur mesure",
+        content: "Nos services sont adaptés à vos besoins spécifiques, que vous soyez vendeur, acheteur ou investisseur."
+      }
+    ],
+    'architecture': [
+      {
+        title: "Conception créative",
+        content: "Des solutions architecturales innovantes qui allient esthétique et fonctionnalité."
+      },
+      {
+        title: "Expertise technique",
+        content: "Une maîtrise des normes et réglementations en vigueur pour des projets conformes."
+      },
+      {
+        title: "Suivi de projet",
+        content: "Un accompagnement complet de la conception à la réalisation de votre projet."
+      },
+      {
+        title: "Design personnalisé",
+        content: "Des designs uniques adaptés à vos goûts et à vos besoins spécifiques."
+      }
+    ],
+    // Ajoutez les détails pour les autres services ici
+  };
+
+  return details[slug] || [
+    {
+      title: "Qualité de service",
+      content: "Nous nous engageons à fournir des services de haute qualité adaptés à vos besoins."
+    },
+    {
+      title: "Expertise professionnelle",
+      content: "Notre équipe expérimentée garantit un travail professionnel et soigné."
+    }
+  ];
+};
+
+// Fonction pour obtenir le processus selon le service
+const getServiceProcess = (slug: string) => {
+  const processes: { [key: string]: Array<{ title: string; description: string }> } = {
+    'location-vente-achat': [
+      {
+        title: "Évaluation initiale",
+        description: "Analyse de vos besoins et objectifs immobiliers"
+      },
+      {
+        title: "Recherche et sélection",
+        description: "Identification des biens correspondant à vos critères"
+      },
+      {
+        title: "Visites et négociation",
+        description: "Organisation des visites et négociation des meilleures conditions"
+      },
+      {
+        title: "Finalisation",
+        description: "Accompagnement jusqu'à la signature finale"
+      }
+    ],
+    // Ajoutez les processus pour les autres services
+  };
+
+  return processes[slug] || [
+    {
+      title: "Consultation",
+      description: "Évaluation de vos besoins"
+    },
+    {
+      title: "Proposition",
+      description: "Élaboration d'une solution adaptée"
+    },
+    {
+      title: "Réalisation",
+      description: "Mise en œuvre du service"
+    }
+  ];
+};
+
+// Fonction pour obtenir la FAQ selon le service
+const getServiceFAQ = (slug: string) => {
+  const faqs: { [key: string]: Array<{ question: string; answer: string }> } = {
+    'location-vente-achat': [
+      {
+        question: "Combien de temps prend une transaction immobilière ?",
+        answer: "Le délai moyen est de 2 à 3 mois, mais peut varier selon la complexité du dossier."
+      },
+      {
+        question: "Quels sont les frais à prévoir ?",
+        answer: "Les frais incluent nos honoraires, les frais de notaire et éventuellement les frais de dossier."
+      },
+      {
+        question: "Comment est estimé un bien immobilier ?",
+        answer: "L'estimation se base sur l'analyse du marché local, l'état du bien et ses caractéristiques spécifiques."
+      },
+      {
+        question: "Quelles garanties proposez-vous ?",
+        answer: "Nous offrons des garanties sur la conformité des documents et la sécurité des transactions."
+      }
+    ],
+    // Ajoutez les FAQ pour les autres services
+  };
+
+  return faqs[slug] || [
+    {
+      question: "Quels sont vos délais d'intervention ?",
+      answer: "Nos délais varient selon le type de service et votre situation spécifique."
+    },
+    {
+      question: "Comment sont calculés vos tarifs ?",
+      answer: "Nos tarifs sont établis sur devis en fonction de vos besoins spécifiques."
+    }
+  ];
 };
 
 export default ServiceDetailPage; 
