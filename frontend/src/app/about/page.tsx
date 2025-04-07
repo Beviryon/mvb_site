@@ -22,13 +22,8 @@ const team = [
     description: 'Expert en négociation et développement commercial',
   },
   {
-<<<<<<< HEAD 
-    name: 'Xavier Donald',
-    role: 'Responsable Communication',
-=======
     name: 'MOUNDOSSO Floretta',
     role: 'Secrétaire comptable',
->>>>>>> 089f927a2243efc928c5a3fe0fdd25218f4d938c
     image: '/images/profil.jpg',
     description: "Spécialiste en gestion administrative et financière, assurant la tenue des comptes et le suivi des opérations comptables avec rigueur et précision",
   },
