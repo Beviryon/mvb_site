@@ -4,22 +4,34 @@ import Image from 'next/image';
 
 const team = [
   {
-    name: 'Vann Beverly',
+    name: 'Van Beverly OUELA',
     role: 'Fondateur',
     image: '/images/Profile_vann.jpg',
     description: "Plus de 10 ans d'expérience dans l'immobilier de luxe",
   },
   {
-    name: 'Jean Martin',
-    role: 'Responsable Commercial',
+    name: 'Donald Xavier ONTSIAYI',
+    role: 'Responsable marketing',
+    image: '/images/profil.jpg',
+    description: 'Spécialiste en communication immobilière ',
+  },
+  {
+    name: 'Céleste Loïck MALANDA',
+    role: 'Responsable commercial',
     image: '/images/profil.jpg',
     description: 'Expert en négociation et développement commercial',
   },
   {
-    name: 'Sophie Laurent',
-    role: 'Responsable Marketing',
+    name: 'MOUNDOSSO Floretta',
+    role: 'Secrétaire comptable',
     image: '/images/profil.jpg',
-    description: 'Spécialiste en communication immobilière',
+    description: "Spécialiste en gestion administrative et financière, assurant la tenue des comptes et le suivi des opérations comptables avec rigueur et précision",
+  },
+  {
+    name: 'MOUELE Djenifer Rocksy',
+    role: 'Infographiste',
+    image: '/images/profil.jpg',
+    description: 'Experte en design graphique et en communication visuelle',
   },
 ];
 
