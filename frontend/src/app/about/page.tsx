@@ -22,16 +22,10 @@ const team = [
     description: 'Expert en négociation et développement commercial',
   },
   {
-    name: 'Xavier Donald',
-    role: 'Responsable Communication',
-    image: '/images/profil.jpg',
-    description: 'Expert en communication et relations publiques.',
-  },
-  {
     name: 'MOUNDOSSO Floretta',
     role: 'Secrétaire comptable',
     image: '/images/profil.jpg',
-    description: "Spécialiste en gestion administrative et financière, assurant la tenue des comptes et le suivi des opérations comptables avec rigueur et précision.",
+    description: "Spécialiste en gestion administrative et financière, assurant la tenue des comptes et le suivi des opérations comptables avec rigueur et précision",
   },
   {
     name: 'MOUELE Djenifer Rocksy',
@@ -209,4 +203,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default AboutPage; 
