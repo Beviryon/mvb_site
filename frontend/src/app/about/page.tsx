@@ -22,7 +22,7 @@ const team = [
     description: 'Expert en négociation et développement commercial',
   },
   {
-<<<<<<< HEAD
+<<<<<<< HEAD 
     name: 'Xavier Donald',
     role: 'Responsable Communication',
 =======
