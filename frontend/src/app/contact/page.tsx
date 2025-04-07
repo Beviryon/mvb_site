@@ -52,7 +52,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Téléphone</h3>
-                      <p className="text-gray-600">+242 06 686 99 83 / 06 941 22 02</p>
+                      <p className="text-gray-600">+242 06 686 99 83 / 06 941 22 02 / 06 709 10 43</p>
                     </div>
                   </div>
                 </div>

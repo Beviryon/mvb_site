@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface ActionPopupProps {
   isOpen: boolean;
@@ -36,6 +36,7 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
+            title="Fermer la fenêtre"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -53,6 +54,7 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
                   ? 'border-[#800000] border-[1px] border-solid bg-red-50'
                   : 'border-gray-200 border-[1px] border-solid hover:border-[#9B1B30]'
               }`}
+              title={`Sélectionner ${action.title}`}
             >
               <div className="text-4xl mb-2">{action.icon}</div>
               <h3 className="text-lg font-semibold mb-2">{action.title}</h3>
@@ -65,11 +67,10 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
           <div className="mt-6">
             <button
               onClick={() => {
-                // Ici, vous pouvez rediriger vers le formulaire approprié
-                console.log(`Action sélectionnée : ${selectedAction}`);
-                onClose();
+                window.location.href = 'https://zfm1as3b.forms.app/formulaire-sans-titre';
               }}
               className="w-full bg-[#800000] text-white py-3 rounded-lg font-semibold hover:bg-[#9B1B30] transition-colors"
+              title="Continuer vers le formulaire"
             >
               Continuer
             </button>
