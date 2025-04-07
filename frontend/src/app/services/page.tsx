@@ -195,6 +195,33 @@ export const DEFAULT_SERVICES: Service[] = [
         }
       }
     }
+  },
+  {
+    id: 8,
+    attributes: {
+      title: "Conseil en investissement",
+      description: "Expertise professionnelle pour optimiser vos investissements immobiliers. Nous vous guidons dans vos décisions d'investissement avec une analyse approfondie du marché et des opportunités.",
+      icon: "📈",
+      price: "Sur consultation",
+      features: [
+        "Analyse de marché détaillée",
+        "Stratégie d'investissement",
+        "Étude de rentabilité",
+        "Optimisation fiscale",
+        "Suivi personnalisé"
+      ],
+      slug: "conseil-investissement",
+      createdAt: "2024-03-25T00:00:00.000Z",
+      updatedAt: "2024-03-25T00:00:00.000Z",
+      image: {
+        data: {
+          attributes: {
+            url: "/images/services/test2.jpg",
+            alternativeText: "Conseil en investissement immobilier"
+          }
+        }
+      }
+    }
   }
 ];
 

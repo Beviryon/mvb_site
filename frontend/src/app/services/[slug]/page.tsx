@@ -211,7 +211,24 @@ const getServiceDetails = (slug: string) => {
         content: "Des designs uniques adaptés à vos goûts et à vos besoins spécifiques."
       }
     ],
-    // Ajoutez les détails pour les autres services ici
+    'conseil-investissement': [
+      {
+        title: "Analyse approfondie du marché",
+        content: "Étude détaillée des tendances du marché immobilier, des opportunités d'investissement et des zones à fort potentiel."
+      },
+      {
+        title: "Stratégie personnalisée",
+        content: "Élaboration d'une stratégie d'investissement adaptée à vos objectifs financiers et votre profil de risque."
+      },
+      {
+        title: "Optimisation fiscale",
+        content: "Conseils experts pour optimiser la fiscalité de vos investissements immobiliers et maximiser votre rentabilité."
+      },
+      {
+        title: "Suivi et accompagnement",
+        content: "Accompagnement continu dans la gestion de votre portefeuille immobilier et ajustement de la stratégie selon l'évolution du marché."
+      }
+    ],
   };
 
   return details[slug] || [
@@ -247,7 +264,46 @@ const getServiceProcess = (slug: string) => {
         description: "Accompagnement jusqu'à la signature finale"
       }
     ],
-    // Ajoutez les processus pour les autres services
+    'architecture': [
+      {
+        title: "Analyse de la demande",
+        description: "Étude des besoins et des préférences des clients"
+      },
+      {
+        title: "Conception et développement",
+        description: "Création de plans et de maquettes"
+      },
+      {
+        title: "Suivi de projet",
+        description: "Accompagnement dans la réalisation du projet"
+      },
+      {
+        title: "Validation et livraison",
+        description: "Contrôle de la qualité et livraison du projet"
+      }
+    ],
+    'conseil-investissement': [
+      {
+        title: "Analyse de votre situation",
+        description: "Évaluation de vos objectifs, capacité d'investissement et profil de risque"
+      },
+      {
+        title: "Étude de marché",
+        description: "Analyse approfondie du marché et identification des opportunités d'investissement"
+      },
+      {
+        title: "Élaboration de la stratégie",
+        description: "Développement d'une stratégie d'investissement personnalisée"
+      },
+      {
+        title: "Mise en œuvre",
+        description: "Accompagnement dans la réalisation des investissements"
+      },
+      {
+        title: "Suivi et optimisation",
+        description: "Suivi régulier de vos investissements et ajustements stratégiques"
+      }
+    ],
   };
 
   return processes[slug] || [
@@ -287,7 +343,42 @@ const getServiceFAQ = (slug: string) => {
         answer: "Nous offrons des garanties sur la conformité des documents et la sécurité des transactions."
       }
     ],
-    // Ajoutez les FAQ pour les autres services
+    'architecture': [
+      {
+        question: "Quel est le processus de conception d'un projet ?",
+        answer: "Le processus de conception d'un projet architectural implique plusieurs étapes, de la recherche à la réalisation finale."
+      },
+      {
+        question: "Comment gérez-vous les changements de projet ?",
+        answer: "Nous adaptons notre approche et mettons à jour le projet en fonction des besoins et des modifications."
+      },
+      {
+        question: "Quels sont les avantages d'un projet d'architecture durable ?",
+        answer: "Les projets d'architecture durable réduisent l'impact environnemental, améliorent la qualité de vie et réduisent les coûts à long terme."
+      },
+      {
+        question: "Comment intégrez-vous l'écologie dans votre projet ?",
+        answer: "Nous intégrons l'écologie dans nos projets en utilisant des matériaux durables, en optimisant l'éclairage naturel et en respectant les écosystèmes locaux."
+      }
+    ],
+    'conseil-investissement': [
+      {
+        question: "Quel type d'investisseur peut bénéficier de vos conseils ?",
+        answer: "Nos services s'adressent aussi bien aux investisseurs débutants qu'expérimentés, particuliers ou professionnels, avec des solutions adaptées à chaque profil."
+      },
+      {
+        question: "Comment évaluez-vous les opportunités d'investissement ?",
+        answer: "Nous utilisons une approche multicritères incluant l'analyse du marché local, le potentiel de plus-value, les rendements locatifs, et les aspects fiscaux."
+      },
+      {
+        question: "Quelle est la durée typique d'un accompagnement ?",
+        answer: "La durée varie selon vos besoins, de la simple consultation ponctuelle à un accompagnement continu sur plusieurs années."
+      },
+      {
+        question: "Proposez-vous un suivi après l'investissement ?",
+        answer: "Oui, nous offrons un suivi régulier de votre portefeuille avec des rapports périodiques et des recommandations d'optimisation."
+      }
+    ],
   };
 
   return faqs[slug] || [

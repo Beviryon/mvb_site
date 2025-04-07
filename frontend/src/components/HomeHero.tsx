@@ -20,7 +20,7 @@ const HomeHero = () => {
             Bienvenue chez MVB Immobilier
           </h1>
           <p className="text-xl md:text-2xl mb-8">
-          Votre partenaire de confiance pour tous vos projets immobiliers. Nous vous accompagnons dans l'acquisition, la location et la gestion de votre patrimoine immobilier.
+          Votre partenaire de confiance pour tous vos projets immobiliers. Nous vous accompagnons dans l'acquisition, la location, la construction et la gestion de votre patrimoine immobilier.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button

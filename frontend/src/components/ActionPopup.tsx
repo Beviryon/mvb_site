@@ -16,7 +16,7 @@ export default function ActionPopup({ isOpen, onClose }: ActionPopupProps) {
     },
     {
       title: 'Louer',
-      description: 'Mettez votre bien en location en toute sérénité',
+      description: 'Mettez votre bien en location, louer un bien immobilier en toute sérénité',
       icon: '🔑',
     },
     {
